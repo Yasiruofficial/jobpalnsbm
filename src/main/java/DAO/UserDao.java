@@ -57,4 +57,36 @@ public class UserDao {
         
     }//Check The Availability Of the user
     
+    public final boolean isAlreadyIn(String userEmail) {
+        
+        try{
+            int rowCount=0;
+            
+            String sql = "SELECT * FROM user WHERE email=?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, userEmail);
+            ResultSet rs = stmt.executeQuery();
+                
+            while(rs.next()){
+                 rowCount++;
+            }
+
+            String sql2 = "SELECT * FROM company WHERE email=?";
+            PreparedStatement stmt2 = con.prepareStatement(sql2);
+            stmt2.setString(1, userEmail);
+            ResultSet rs2 = stmt2.executeQuery();
+                
+            while(rs2.next()){
+                 rowCount++;
+            }
+
+           return rowCount >= 1 ;
+            
+        }catch(SQLException ex){
+            System.out.println("Exeption By isAlreadyIn : UserDao");
+            return false;
+        }
+        
+    }//Check The already in
+    
 }
