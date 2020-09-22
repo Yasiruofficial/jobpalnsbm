@@ -114,5 +114,50 @@ public class UserDao {
         }
         
     }//Set user details to session
+
+
+    public final int add(UserBean UB) {
+        
+        if( !isAlreadyIn( UB.getEmail() ) ){
+      
+            try {
+                
+                String sql = "INSERT INTO user(email,fname,lname,password,address,mnumber,gender,bday,exyears,experience,photo) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                
+                stmt.setString(1, UB.getEmail());
+                stmt.setString(2, UB.getFname());
+                stmt.setString(3, UB.getLname());
+                stmt.setString(4, UB.getPassword());
+                stmt.setString(5, UB.getAddress());
+                stmt.setString(6, UB.getMnumber());
+                stmt.setString(7, UB.getGender());
+                stmt.setString(8, UB.getBday() );
+                stmt.setString(9, UB.getExyears());
+                stmt.setString(10, Arrays.toString(UB.getExperience()));
+                stmt.setString(11, UB.getPhoto());                
+                
+                int rs = stmt.executeUpdate();
+
+                
+                if( rs == 1){
+                    
+                    return 1;
+                }
+                else{
+                    
+                    return 2;
+                }
+                
+            } catch (SQLException ex) {
+                System.out.println(ex);
+                return 3;
+            }  
+        }
+        else{
+            return 4;
+        }
+
+    }//user register
     
 }
