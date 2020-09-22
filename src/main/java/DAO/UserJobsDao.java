@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Bean.UserJobsBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,6 +42,31 @@ public class UserJobsDao {
             System.out.println("isApplied Error ");
             return false;
         }
+    }
+    
+        
+    public final boolean Apply(UserJobsBean userjobsbean){
+        
+        if(!isApplied(userjobsbean.getUserid(),userjobsbean.getJobid())){
+            
+            try {
+                String sql = "INSERT INTO userjobs(userid,jobid) VALUES(?,?)";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setInt(1, userjobsbean.getUserid());
+                stmt.setInt(2, userjobsbean.getJobid());
+                int rs = stmt.executeUpdate();
+                
+                return rs ==1;
+                
+            } catch (SQLException ex) {
+                System.out.println(ex);
+                System.out.println("Apply Error");
+                return false;
+            }
+            
+        }
+        return false;
+
     }
     
 }
