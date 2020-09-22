@@ -1,4 +1,3 @@
-/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -88,5 +87,32 @@ public class UserDao {
         }
         
     }//Check The already in
+
+    public final void setSessionDetails(HttpSession session,String userEmail) {
+        
+        try{
+            String sql = "SELECT * FROM user WHERE email=?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, userEmail);
+            ResultSet rs = stmt.executeQuery();
+            
+            rs.next();
+              
+            int userId = rs.getInt("userid");
+            String userName = rs.getString("fname");
+            
+            String[] userDetails = new String[3];
+            userDetails[0] = Integer.toString(userId);
+            userDetails[1] = userName;
+            userDetails[2] = userEmail;
+                
+            session.setAttribute("user", userDetails);
+            
+        }catch(SQLException ex){
+            System.out.println("Exeption By setSessionDetails : UserDao");
+            
+        }
+        
+    }//Set user details to session
     
 }
