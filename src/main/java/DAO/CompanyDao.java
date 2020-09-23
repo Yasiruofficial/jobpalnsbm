@@ -115,6 +115,44 @@ public class CompanyDao {
         }
         
     }//Set company details to session
+    
+    
+    public final int add(CompanyBean CB) {
+        
+        if( !isAlreadyIn( CB.getEmail() ) ){
+            try {
+                
+                String sql = "INSERT INTO company(name,email,password,address,mnumber,logo) VALUES(?,?,?,?,?,?)";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                
+                stmt.setString(1, CB.getName());
+                stmt.setString(2, CB.getEmail());
+                stmt.setString(3, CB.getPassword());
+                stmt.setString(4, CB.getAddress());
+                stmt.setString(5, CB.getMnumber());
+                stmt.setString(6, CB.getLogo());
+             
+                
+                int rs = stmt.executeUpdate();
+                
+                if( rs == 1){
+                    return 1;
+                }
+                else{
+                    return 2;
+                }
+                
+            } catch (SQLException ex) {
+                
+                System.out.println(ex + " : Exception by add");
+                return 3;
+            }  
+        }
+        else{
+            return 4;
+        }
+    }//Company register
+
 
 
     
