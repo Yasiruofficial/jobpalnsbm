@@ -5,11 +5,16 @@
  */
 package DAO;
 
+import Bean.UserBean;
 import Bean.UserJobsBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.DBConnection;
 
 /**
@@ -67,6 +72,70 @@ public class UserJobsDao {
         }
         return false;
 
+    }
+    
+    public HashMap< Integer , ArrayList<UserBean>> getAdminDashboard(int companyId){
+        
+        try {
+            HashMap< Integer , ArrayList<UserBean> > dashboard = new HashMap<>();
+            HashMap< Integer , UserBean > user = new HashMap<>();
+            
+            String sql = " SELECT userjobs.jobid , userjobs.userid FROM userjobs JOIN job ON job.jobid = userjobs.jobid AND job.cid = ? ORDER BY userjobs.jobid";
+ 
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, companyId);
+            ResultSet rs = stmt.executeQuery();
+         
+            UserDao userdao = new UserDao();
+       
+            while(rs.next()){
+           
+                ArrayList<UserBean> templist = new ArrayList<>();
+
+                int jobid = rs.getInt("userjobs.jobid");
+                int userid = rs.getInt("userjobs.userid");
+        
+                if(user.containsKey(userid)){
+            
+                    UserBean userbean = user.get(userid);
+             
+                    if(dashboard.containsKey(jobid)){
+
+                      dashboard.get(jobid).add(userbean);  
+                    }
+                    else{
+
+                        templist.add(userbean);
+                        dashboard.put(jobid,templist);
+                    }
+                }
+                else{
+                    
+
+                    UserBean userbean = userdao.getUserDetailsById(userid);
+                    
+                    if(dashboard.containsKey(jobid)){
+ 
+                      dashboard.get(jobid).add(userbean);  
+                    }
+                    else{
+
+                        templist.add(userbean);
+                        dashboard.put(jobid,templist);
+                    }
+        
+                    user.put(userid, userbean);
+                    
+                }
+                                                
+            }
+            
+            return dashboard;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserJobsDao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
     
 }
