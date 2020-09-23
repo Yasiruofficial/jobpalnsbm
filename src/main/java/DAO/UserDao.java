@@ -198,6 +198,12 @@ public class UserDao {
         return null;
        
     }
+     
+     public final boolean login(String userEmail,String password){
+         
+         return isValid(userEmail,password);
+         
+     }
     
     
     

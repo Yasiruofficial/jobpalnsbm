@@ -2,7 +2,6 @@ package unitTesting.job;
 
 import Bean.JobBean;
 import DAO.JobDao;
-import java.util.Date;
 import static junit.framework.Assert.assertEquals;
 import org.junit.Test;
 
