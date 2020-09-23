@@ -287,4 +287,34 @@ public class JobDao {
         
     }
     
+        public final String findName(int jobid){
+        
+        int rowCount = 0;
+        try{
+            String sql = "SELECT * FROM job WHERE jobid=?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, jobid);
+            ResultSet rs = stmt.executeQuery();
+
+            rs.next();
+
+                String name = rs.getString("name");
+                
+                rowCount++;
+
+            if(rowCount == 1){
+                return name;
+            }
+            else{
+                return null;
+            }
+ 
+        }catch(SQLException ex){
+            System.out.println(ex);
+            System.out.println("Exeption By isValidJobId : JobDao");
+            return null;
+        }
+        
+    }
+    
 }

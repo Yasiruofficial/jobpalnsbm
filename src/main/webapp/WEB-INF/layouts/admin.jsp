@@ -14,8 +14,6 @@
     int jobslength = dashboard.size();
     
     ArrayList<Integer> intKeys = new ArrayList<>(dashboard.keySet());
-    
-
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
