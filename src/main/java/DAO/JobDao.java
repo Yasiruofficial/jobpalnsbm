@@ -131,7 +131,7 @@ public class JobDao {
   
         String sql = "SELECT * FROM job";
 
-        System.out.println("SQL -> "+sql);
+        System.out.println("SQL 2 -> "+sql);
 
         try{
             

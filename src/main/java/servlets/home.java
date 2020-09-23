@@ -1,7 +1,6 @@
 package servlets;
 
 import Bean.JobBean;
-import DAO.CompanyDao;
 import DAO.JobDao;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,8 +30,7 @@ public class home extends HttpServlet {
             joblist.add(tempJoblist.get(index));
             index++;
             count++;
-        }
-        System.out.println(joblist.size());
+        }        
         request.setAttribute("joblist", joblist);
         request.getRequestDispatcher(common.getLayout_path()+"index.jsp").forward(request, response);
 

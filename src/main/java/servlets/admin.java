@@ -1,7 +1,11 @@
 package servlets;
 
+import Bean.UserBean;
 import DAO.CompanyDao;
+import DAO.UserJobsDao;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +24,14 @@ public class admin extends HttpServlet {
             response.sendError(401);
         }
         else{
+            UserJobsDao userjobsdao = new UserJobsDao();
+            
+            String[] company = CompanyDao.getSessionDetails(session);
+            int conpanyId = Integer.parseInt(company[0]);
+
+            HashMap< Integer , ArrayList<UserBean>> dashboard = userjobsdao.getAdminDashboard(conpanyId);
+
+            request.setAttribute("dashboard", dashboard);
             request.getRequestDispatcher(common.getLayout_path()+"admin.jsp").forward(request, response);
         }
         

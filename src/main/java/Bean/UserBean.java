@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class UserBean implements Serializable{
     
+    private int id;
     private String email;
     private String fname;
     private String lname;
@@ -132,6 +133,14 @@ public class UserBean implements Serializable{
 
     public void setExperience(String[] experience) {
         this.experience = experience;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

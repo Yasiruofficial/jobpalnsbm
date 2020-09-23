@@ -7,10 +7,8 @@ package servlets;
 
 import Bean.JobBean;
 import Bean.UserJobsBean;
-import DAO.CompanyDao;
 import DAO.JobDao;
 import DAO.UserDao;
-import static DAO.UserDao.getSessionDetails;
 import DAO.UserJobsDao;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -48,9 +46,7 @@ public class apply extends HttpServlet {
                 
                 userjobsbean.setUserid(userid);
                 userjobsbean.setJobid(jobid);
-                
-                System.out.println(userjobsbean.toString());
-                
+                               
                 if(userjobsdao.Apply(userjobsbean)){
                     session.setAttribute("jobApply", "1");
                     try {
