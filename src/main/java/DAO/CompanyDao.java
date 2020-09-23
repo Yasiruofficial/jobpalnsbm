@@ -88,6 +88,34 @@ public class CompanyDao {
         }
         
     }//Check The already in
+    
+    public final void setSessionDetails(HttpSession session,String companyEmail) {
+        
+        try{
+            String sql = "SELECT * FROM company WHERE email=?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, companyEmail);
+            ResultSet rs = stmt.executeQuery();
+            
+            rs.next();
+              
+            int companyId = rs.getInt("cid");
+            String companyName = rs.getString("name");
+            
+            String[] companyDetails = new String[3];
+            companyDetails[0] = Integer.toString(companyId);
+            companyDetails[1] = companyName;
+            companyDetails[2] = companyEmail;
+                
+            session.setAttribute("company", companyDetails);
+            
+        }catch(SQLException ex){
+            System.out.println(ex + " : Exeption By setCompanyInSession");
+            
+        }
+        
+    }//Set company details to session
+
 
     
     
