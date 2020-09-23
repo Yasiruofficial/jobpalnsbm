@@ -164,4 +164,42 @@ public class UserDao {
     
     
     
+     public final UserBean getUserDetailsById(int userid) {
+        try{
+            UserBean UB = new UserBean();
+           
+            String sql = "SELECT * FROM user WHERE userid=?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, userid);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+           
+            UB.setId(rs.getInt("userid"));
+            UB.setEmail(rs.getString("email"));
+            UB.setFname(rs.getString("fname"));
+            UB.setLname(rs.getString("lname"));
+            UB.setAddress(rs.getString("address"));
+            UB.setMnumber(rs.getString("mnumber"));
+            UB.setGender(rs.getString("gender"));
+            UB.setBday(rs.getString("bday"));
+            UB.setExyears(rs.getString("exyears"));  
+            String str = rs.getString("experience");
+         
+            String[] kk = str.split(",");
+            System.out.println(kk[0]);
+           
+            UB.setPhoto(rs.getString("photo"));
+
+            return UB;
+           
+        }
+        catch(SQLException ex){
+            System.out.println("Exeption -> " + ex);
+        }
+        return null;
+       
+    }
+    
+    
+    
 }
