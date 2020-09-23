@@ -37,9 +37,6 @@
                             <a href="settings">Settings</a>
                         </li>
                         <li>
-                            <a href="editcv">Edit CV</a>
-                        </li>
-                        <li>
                             <a href="<%=common.getLogout_path() +"?logout=1"%>" >Logout</a>
                         </li>
                     </ul>
@@ -62,6 +59,9 @@
               <li class="d-lg-none">
                 <a href="<%=common.getLogin_servlet()%>">Log In</a>
               </li>
+              <li class="d-lg-none">
+                <a href="<%=common.getRegister_servlet()%>">Sign Up</a>
+              </li>
               
               <% } %>
               
@@ -83,6 +83,9 @@
               
               <a href="<%=common.getLogin_servlet()%>" class="btn btn-primary border-width-2 d-none d-lg-inline-block">
                 <span class="mr-2 icon-lock_outline"></span>Log In</a>
+              
+                <a href="<%=common.getRegister_servlet() %>" class="btn btn-primary border-width-2 d-none d-lg-inline-block">
+                <span class="mr-2 icon-lock_outline"></span>Sign Up</a>
                 
               <% } %>
             </div>
