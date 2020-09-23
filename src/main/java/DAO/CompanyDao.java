@@ -57,6 +57,39 @@ public class CompanyDao {
         
     }//Check The Availability Of the Company
     
+    public final boolean isAlreadyIn(String companyEmail) {
+        
+        try{
+            int rowCount=0;
+            
+            String sql = "SELECT * FROM user WHERE email=?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, companyEmail);
+            ResultSet rs = stmt.executeQuery();
+                
+            while(rs.next()){
+                 rowCount++;
+            }
+            
+            String sql2 = "SELECT * FROM company WHERE email=?";
+            PreparedStatement stmt2 = con.prepareStatement(sql2);
+            stmt2.setString(1, companyEmail);
+            ResultSet rs2 = stmt2.executeQuery();
+                
+            while(rs2.next()){
+                 rowCount++;
+            }
+            
+           return rowCount >= 1 ;
+            
+        }catch(SQLException ex){
+            System.out.println(ex +" : Exeption By isCompanyAlreadyIn");
+            return false;
+        }
+        
+    }//Check The already in
+
+    
     
 
 
