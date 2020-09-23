@@ -179,4 +179,51 @@ public class JobDao {
         }
     }
     
+    
+    public final int add(JobBean JB){
+        
+            try {
+                
+                String sql = "INSERT INTO job( name, image, street, district, type,category, publisheddate, vacancy, salary, gender, applicationdeadline, description, responsibility1, responsibility2, responsibility3, responsibility4, eduexperience1, eduexperience2, eduexperience3, eduexperience4, cid) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                
+                stmt.setString(1, JB.getName());
+                stmt.setString(2, JB.getImage());
+                stmt.setString(3, JB.getStreet());
+                stmt.setString(4, JB.getDistrict());
+                stmt.setString(5, JB.getType());
+                stmt.setString(6, JB.getCategory());
+                stmt.setString(7, JB.getPublisheddate() );
+                stmt.setString(8, JB.getVacancy());
+                stmt.setString(9, JB.getSalary());
+                stmt.setString(10, JB.getGender());
+                stmt.setString(11, JB.getApplicationdeadline() );
+                stmt.setString(12, JB.getDescription());
+                stmt.setString(13, JB.getResponsibility1());
+                stmt.setString(14, JB.getResponsibility2());
+                stmt.setString(15, JB.getResponsibility3());
+                stmt.setString(16, JB.getResponsibility4());
+                stmt.setString(17, JB.getEduexperience1());
+                stmt.setString(18, JB.getEduexperience2());
+                stmt.setString(19, JB.getEduexperience3());
+                stmt.setString(20, JB.getEduexperience4());
+                stmt.setInt(21, JB.getCid());
+                
+                if(stmt.executeUpdate() == 1){
+                    
+                    return 1;
+                }
+                else{
+                    return 2;
+                }
+                
+            } catch (SQLException ex) {
+                
+                System.out.println("Exeption By add : JobDao");
+                System.out.println(ex);
+                return 3;
+                
+            }  
+    }
+    
 }
