@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Bean.CompanyBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -153,6 +154,30 @@ public class CompanyDao {
         }
     }//Company register
 
+    public final String[] getCompanyDetailsById(int cid) {
+        try{
+            String sql = "SELECT * FROM company WHERE cid=?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, cid);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            String name = rs.getString("name");
+            String email = rs.getString("email");
+            String address = rs.getString("address");
+            String mnumber = rs.getString("mnumber");
+            String logo = rs.getString("logo");
+            
+            String[] result = {name,email,address,mnumber,logo};
+            
+            return result;
+            
+        }
+        catch(SQLException ex){
+            
+        }
+        return null;
+        
+    }//getCompanyDetailsById
 
 
     
