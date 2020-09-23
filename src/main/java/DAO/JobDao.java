@@ -226,4 +226,66 @@ public class JobDao {
             }  
     }
     
+    
+        public final boolean remove(int jobid){
+        return false;
+    }
+    
+    public final JobBean find(int jobid){
+        
+        int rowCount = 0;
+        try{
+            String sql = "SELECT * FROM job WHERE jobid=?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, jobid);
+            ResultSet rs = stmt.executeQuery();
+            
+            JobBean job = new JobBean();
+            
+            while(rs.next()){
+                
+                job.setJobid(rs.getInt("jobid"));
+                job.setName(rs.getString("name"));
+                job.setImage(rs.getString("image"));
+                job.setStreet(rs.getString("street"));
+                job.setDistrict(rs.getString("district"));
+                job.setType(rs.getString("type"));
+                job.setCategory(rs.getString("category"));
+                job.setPublisheddate(rs.getString("publisheddate"));
+                job.setVacancy(rs.getString("vacancy"));
+                job.setSalary(rs.getString("salary"));
+                job.setGender(rs.getString("gender"));
+                job.setApplicationdeadline(rs.getString("applicationdeadline"));
+                job.setDescription(rs.getString("description"));
+                job.setResponsibility1(rs.getString("responsibility1"));
+                job.setResponsibility2(rs.getString("responsibility2"));
+                job.setResponsibility3(rs.getString("responsibility3"));
+                job.setResponsibility4(rs.getString("responsibility4"));
+                job.setEduexperience1(rs.getString("eduexperience1"));
+                job.setEduexperience2(rs.getString("eduexperience2"));
+                job.setEduexperience3(rs.getString("eduexperience3"));
+                job.setEduexperience4(rs.getString("eduexperience4"));
+                job.setCid(rs.getInt("cid"));
+                
+                rowCount++;
+                
+            }
+                
+            if(rowCount == 1){
+                return job;
+            }
+            else{
+                return null;
+            }
+        
+
+            
+        }catch(SQLException ex){
+            System.out.println(ex);
+            System.out.println("Exeption By isValidJobId : JobDao");
+            return null;
+        }
+        
+    }
+    
 }
