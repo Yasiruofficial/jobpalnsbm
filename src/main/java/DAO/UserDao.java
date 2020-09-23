@@ -1,15 +1,17 @@
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO;
 
-import java.sql.Connection;
+import Bean.UserBean;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.servlet.http.HttpSession;
 import util.DBConnection;
+
+import java.sql.Connection;
+import java.util.Arrays;
+
+import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author WCT
@@ -159,5 +161,7 @@ public class UserDao {
         }
 
     }//user register
+    
+    
     
 }
