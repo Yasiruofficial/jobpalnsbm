@@ -152,7 +152,6 @@ public class UserDao {
                 }
                 
             } catch (SQLException ex) {
-                System.out.println(ex);
                 return 3;
             }  
         }
