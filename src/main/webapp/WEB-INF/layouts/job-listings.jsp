@@ -3,11 +3,10 @@
 <%@page import="Bean.JobBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.JobDao"%>
-<% 
-    JobDao jobdao = new JobDao(); 
+<%  
     CompanyDao company = new CompanyDao();
     
-    int curruntPage = (Integer)request.getAttribute("page");
+    int curruntPage = Integer.parseInt((String)request.getAttribute("page"));
     String queryString = (String)request.getAttribute("queryString");
     ArrayList<JobBean> joblist = (ArrayList<JobBean>)request.getAttribute("joblist");
     int arrayCount = (Integer)request.getAttribute("arrayCount");

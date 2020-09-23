@@ -22,6 +22,7 @@ public class admin extends HttpServlet {
         
         if(CompanyDao.getSessionDetails(session) == null){
             response.sendError(401);
+            System.out.println("");
         }
         else{
             UserJobsDao userjobsdao = new UserJobsDao();

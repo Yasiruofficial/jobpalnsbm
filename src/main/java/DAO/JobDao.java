@@ -167,7 +167,6 @@ public class JobDao {
                 list.add(job);
                 
             }
-            System.out.println("Okay");
             return list;
             
             
