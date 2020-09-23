@@ -10,7 +10,7 @@ public class DBConnection {
     
     public static Connection getConnection(){
         
-        String dbauth = "r0ot";
+        String dbauth = "root";
         String dbpassword = "admin"; 
         try {
             

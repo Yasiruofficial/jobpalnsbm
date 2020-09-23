@@ -16,7 +16,7 @@ import org.junit.Test;
  */
 public class checkRegisterWithEmail {
     
-    UserDao testDao = new UserDao();
+    UserDao userdao = new UserDao();
     String tempXp[] = { "1", "2","6","9","4" };
     
     private final String email = "yasirusweearis@gmail.com";
@@ -29,7 +29,7 @@ public class checkRegisterWithEmail {
     private final String bday = "30-20-2014";
     private final String exyears = "20";
     private final String[] experience = tempXp ;
-    private final String photo = "/img/test.jpg"; 
+    private final String photo = "/img/user/male.jpg"; 
     
     UserBean testBean1 = new UserBean( email, fname, lname, password, address, mnumber, gender, bday, exyears, experience, photo);
     UserBean testBean2 = new UserBean( null, fname, lname, password, address, mnumber, gender, bday, exyears, experience, photo);
@@ -37,12 +37,12 @@ public class checkRegisterWithEmail {
     @Test
     public void checkWithAlreadyExistEmail(){
    
-        assertNotSame(1, (testDao.add(testBean1)) );
+        assertNotSame(1, (userdao.add(testBean1)) );
     }
     
     @Test
     public void checkWithNullEmail(){
    
-        assertNotSame(1, (testDao.add(testBean2)) );
+        assertNotSame(1, (userdao.add(testBean2)) );
     }
 }
