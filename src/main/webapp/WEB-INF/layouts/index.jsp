@@ -8,7 +8,7 @@
     CompanyDao company = new CompanyDao();
     JobDao jobdao = new JobDao();
     ArrayList<JobBean> joblist = (ArrayList<JobBean>)request.getAttribute("joblist");
-
+    
 %>
 <!doctype html>
 <html lang="en">

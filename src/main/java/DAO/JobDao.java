@@ -131,8 +131,6 @@ public class JobDao {
   
         String sql = "SELECT * FROM job";
 
-        System.out.println("SQL 2 -> "+sql);
-
         try{
             
             
@@ -169,6 +167,7 @@ public class JobDao {
                 list.add(job);
                 
             }
+            System.out.println("Okay");
             return list;
             
             

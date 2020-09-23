@@ -16,7 +16,7 @@ public class home extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
+        
         JobDao jobdao = new JobDao(); 
 
         ArrayList<JobBean> tempJoblist = jobdao.getJobsResultsetByPageNo();
